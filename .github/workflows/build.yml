@@ -22,7 +22,8 @@ concurrency:
 jobs:
   build:
     name: ${{ inputs.platform }}
-    runs-on: ${{ fromJSON('{"ios":"macos-26","macos":"macos-26","android":"ubuntu-24.04","linux-x86_64":"ubuntu-24.04","linux-aarch64":"ubuntu-24.04-arm","windows":"windows-2025"}')[inputs.platform] }}
+    # macos-26 often has no free runners; macos-15 is enough for the unsigned iOS IPA.
+    runs-on: ${{ fromJSON('{"ios":"macos-15","macos":"macos-15","android":"ubuntu-24.04","linux-x86_64":"ubuntu-24.04","linux-aarch64":"ubuntu-24.04-arm","windows":"windows-2025"}')[inputs.platform] }}
     timeout-minutes: 360
     defaults:
       run:
